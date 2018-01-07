@@ -1,0 +1,5 @@
+D:\Max\Projects\MaksimsAwesomeProjectStructure\MAPS\RepositoryLayer\Repositories\bin\Debug\Repositories.dll
+D:\Max\Projects\MaksimsAwesomeProjectStructure\MAPS\RepositoryLayer\Repositories\bin\Debug\Repositories.pdb
+D:\Max\Projects\MaksimsAwesomeProjectStructure\MAPS\RepositoryLayer\Repositories\obj\Debug\Repositories.csproj.CoreCompileInputs.cache
+D:\Max\Projects\MaksimsAwesomeProjectStructure\MAPS\RepositoryLayer\Repositories\obj\Debug\Repositories.dll
+D:\Max\Projects\MaksimsAwesomeProjectStructure\MAPS\RepositoryLayer\Repositories\obj\Debug\Repositories.pdb
