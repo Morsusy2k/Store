@@ -24,6 +24,16 @@ namespace Store.BusinessLogicLayer.Managers
             return Map(_repository.GetRoleById(id));
         }
 
+        public IEnumerable<Role> GetAllByUserId(int id)
+        {
+            return _repository.GetAllRolesByUserId(id).Select(x => Map(x));
+        }
+
+        public bool UserRoleExists(User user, Role role)
+        {
+            return _repository.UserRoleExists(Map(user), Map(role));
+        }
+
         public Role Add(Role role)
         {
             return Map(_repository.InsertRole(Map(role)));
@@ -38,7 +48,17 @@ namespace Store.BusinessLogicLayer.Managers
         {
             _repository.DeleteRole(Map(role));
         }
-        
+
+        public Role AddUserRole(Role role, User user)
+        {
+            return Map(_repository.InsertUserRole(Map(role), Map(user)));
+        }
+
+        public void RemoveUserRoles(User user)
+        {
+            _repository.DeleteAllUserRoles(Map(user));
+        }
+
         public Role Map(DataAccessLayer.Models.Role dbRole)
         {
             if (Equals(dbRole, null))
@@ -56,6 +76,26 @@ namespace Store.BusinessLogicLayer.Managers
                 throw new ArgumentNullException("Role", "Valid role is mandatory!");
 
             return new DataAccessLayer.Models.Role(role.Id, role.Name);
+        }
+
+        public User Map(DataAccessLayer.Models.User dbUser)
+        {
+            if (Equals(dbUser, null))
+                return null;
+
+            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Activated, dbUser.Version, dbUser.Picture);
+            user.Id = dbUser.Id;
+            user.Version = dbUser.Version;
+
+            return user;
+        }
+
+        public DataAccessLayer.Models.User Map(User user)
+        {
+            if (Equals(user, null))
+                throw new ArgumentNullException("User", "Valid user is mandatory!");
+
+            return new DataAccessLayer.Models.User(user.Id, user.FirstName, user.LastName, user.EmailAddress, user.PhoneNumber, user.Address, user.Password, user.LastLogin, user.Activated, user.Version, user.Picture);
         }
 
     }

@@ -12,7 +12,7 @@ namespace Store.RepositoryLayer.Repositories
 
         public Role GetRoleById(int id)
         {
-           return _provider.GetRoleById(id);
+            return _provider.GetRoleById(id);
         }
 
         public List<Role> GetAllRoles()
@@ -20,9 +20,19 @@ namespace Store.RepositoryLayer.Repositories
             return _provider.GetAllRoles();
         }
 
+        public List<Role> GetAllRolesByUserId(int id)
+        {
+            return _provider.GetAllRolesByUserId(id);
+        }
+
+        public bool UserRoleExists(User user, Role role)
+        {
+            return _provider.UserRoleExists(user, role);
+        }
+
         public Role InsertRole(Role role, ITransaction transaction = null)
         {
-            return _provider.InsertRole(role,transaction);
+            return _provider.InsertRole(role, transaction);
         }
 
         public Role UpdateRole(Role role, ITransaction transaction = null)
@@ -33,6 +43,16 @@ namespace Store.RepositoryLayer.Repositories
         public void DeleteRole(Role role, ITransaction transaction = null)
         {
             _provider.DeleteRole(role, transaction);
+        }
+
+        public Role InsertUserRole(Role role, User user, ITransaction transaction = null)
+        {
+            return _provider.InsertUserRole(role, user, transaction);
+        }
+
+        public void DeleteAllUserRoles(User user, ITransaction transaction = null)
+        {
+            _provider.DeleteAllUserRoles(user, transaction);
         }
 
         public ITransaction CreateNewTransaction()
