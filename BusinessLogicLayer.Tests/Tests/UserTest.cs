@@ -16,11 +16,12 @@ namespace Store.BusinessLogicLayer.Tests
             while (choice != 5)
             {
                 Console.Clear();
+                ShowAll();
+                Console.WriteLine("\n-------------------------------------------------");
                 Console.WriteLine("- User test menu -");
-                Console.WriteLine("[1] List all users");
-                Console.WriteLine("[2] Insert new user");
-                Console.WriteLine("[3] Update user");
-                Console.WriteLine("[4] Remove user");
+                Console.WriteLine("[1] Insert new user");
+                Console.WriteLine("[2] Update user");
+                Console.WriteLine("[3] Remove user");
                 Console.WriteLine("[5] Exit");
 
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -34,18 +35,14 @@ namespace Store.BusinessLogicLayer.Tests
                 switch (choice)
                 {
                     case 1:
-                        ShowAll();
-                        Wait();
-                        break;
-                    case 2:
                         InsertNewUser();
                         Wait();
                         break;
-                    case 3:
+                    case 2:
                         UpdateAndShowUser();
                         Wait();
                         break;
-                    case 4:
+                    case 3:
                         DeleteUser();
                         Wait();
                         break;
@@ -53,16 +50,7 @@ namespace Store.BusinessLogicLayer.Tests
             }
         }
 
-        public static void Populate()
-        {
-            DateTime dt = DateTime.Now;
-            var CurrentTimeStamp = BitConverter.GetBytes(dt.Ticks);
-            User user1 = new User("Dragan", "Ilic", "morsy2k@gmail.com", "061/300-1733", "Josifa Pancica 33", "sifra", DateTime.Now, false, CurrentTimeStamp);
-            user1 = _userManager.Add(user1);
-
-        }
-
-        public static void InsertNewUser()
+        private static void InsertNewUser()
         {
             DateTime dt = DateTime.Now;
             var CurrentTimeStamp = BitConverter.GetBytes(dt.Ticks);
@@ -90,7 +78,7 @@ namespace Store.BusinessLogicLayer.Tests
 
         }
 
-        public static void ShowAll()
+        private static void ShowAll()
         {
             foreach (var user in _userManager.GetAll())
             {
@@ -98,7 +86,7 @@ namespace Store.BusinessLogicLayer.Tests
             };
         }
 
-        public static void UpdateAndShowUser()
+        private static void UpdateAndShowUser()
         {
             Console.Write("\nInsert user id: ");
             Int32.TryParse(Console.ReadLine(),out int id);
@@ -117,7 +105,7 @@ namespace Store.BusinessLogicLayer.Tests
             Console.WriteLine("User saved!");
         }
 
-        public static void DeleteUser()
+        private static void DeleteUser()
         {
             Console.Write("\nInsert user id: ");
             Int32.TryParse(Console.ReadLine(), out int id);
@@ -126,9 +114,9 @@ namespace Store.BusinessLogicLayer.Tests
             Console.WriteLine("User removed!");
         }
 
-        public static void ShowUser(User user)
+        private static void ShowUser(User user)
         {
-            Console.WriteLine($"\nId:{user.Id}\nName:{user.FirstName} {user.LastName}");
+            Console.WriteLine($"\nId: {user.Id}\nName: {user.FirstName} {user.LastName}");
         }
 
         private static void Wait()
