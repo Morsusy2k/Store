@@ -19,14 +19,29 @@ namespace Store.BusinessLogicLayer.Managers
             return _repository.GetAllUsers().Select(x => Map(x));
         }
 
+        public IEnumerable<Verification> GetAllVerifications()
+        {
+            return _repository.GetAllVerifications().Select(x => Map(x));
+        }
+
         public User GetById(int id)
         {
             return Map(_repository.GetUserById(id));
         }
 
+        public Verification GetVerificationByUserId(int id)
+        {
+            return Map(_repository.GetVerificationByUserId(id));
+        }
+
         public User Add(User user)
         {
             return Map(_repository.InsertUser(Map(user)));
+        }
+
+        public Verification AddVerification(Verification verification)
+        {
+            return Map(_repository.InsertVerification(Map(verification)));
         }
 
         public User Save(User user)
@@ -37,14 +52,19 @@ namespace Store.BusinessLogicLayer.Managers
         public void Remove(User user)
         {
             _repository.DeleteUser(Map(user));
-        }        
+        }
+
+        public void RemoveVerification(Verification verification)
+        {
+            _repository.DeleteVerification(Map(verification));
+        }
 
         public User Map(DataAccessLayer.Models.User dbUser)
         {
             if (Equals(dbUser, null))
                 return null;
 
-            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Activated, dbUser.Version, dbUser.Picture);
+            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Activated, dbUser.Picture);
             user.Id = dbUser.Id;
             user.Version = dbUser.Version;
 
@@ -57,6 +77,25 @@ namespace Store.BusinessLogicLayer.Managers
                 throw new ArgumentNullException("User", "Valid user is mandatory!");
 
             return new DataAccessLayer.Models.User(user.Id, user.FirstName, user.LastName, user.EmailAddress, user.PhoneNumber, user.Address, user.Password, user.LastLogin, user.Activated, user.Version, user.Picture);
+        }
+
+        public Verification Map(DataAccessLayer.Models.Verification dbVerification)
+        {
+            if (Equals(dbVerification, null))
+                return null;
+
+            Verification verification = new Verification(dbVerification.UserId);
+            verification.Id = dbVerification.Id;
+
+            return verification;
+        }
+
+        public DataAccessLayer.Models.Verification Map(Verification verification)
+        {
+            if (Equals(verification, null))
+                throw new ArgumentNullException("Verification", "Valid verification is mandatory!");
+
+            return new DataAccessLayer.Models.Verification(verification.Id, verification.UserId);
         }
 
     }

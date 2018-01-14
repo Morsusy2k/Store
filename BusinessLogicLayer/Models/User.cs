@@ -15,7 +15,7 @@ namespace Store.BusinessLogicLayer.Models
         private bool activated { get; set; }
 
         public User() { }
-        public User(string firstname, string lastname, string emailaddress, string phonenumber, string address, string password, DateTime lastlogin, bool activated, byte[] version, byte?[] picture = null)
+        public User(string firstname, string lastname, string emailaddress, string phonenumber, string address, string password, DateTime lastlogin, bool activated, byte?[] picture = null)
         {
             FirstName = firstname;
             LastName = lastname;
@@ -26,7 +26,6 @@ namespace Store.BusinessLogicLayer.Models
             Password = password;
             LastLogin = lastlogin;
             Activated = activated;
-            Version = version;
         }
         public int Id { get; set; }
         public byte[] Version { get; set; }
@@ -180,7 +179,7 @@ namespace Store.BusinessLogicLayer.Models
                     throw;
                 }
             }
-        } 
+        }
         public DateTime LastLogin
         {
             get
@@ -228,4 +227,20 @@ namespace Store.BusinessLogicLayer.Models
             }
         }
     }
+
+    public class Verification
+    {
+        private string code { get; set; }
+
+        public Verification() { }
+        public Verification(int userId)
+        {
+            UserId = userId;
+        }
+
+        public int Id { get; set; }
+        public int UserId { get; set; }
+
+    }
+
 }

@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICategoryManager.cs" />
+    <Compile Include="ISettingsManager.cs" />
+    <Compile Include="IArticleManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="IRoleManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

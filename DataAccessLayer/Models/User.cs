@@ -31,4 +31,17 @@ namespace Store.DataAccessLayer.Models
         public byte[] Version { get; set; }
         public bool Activated { get; set; }
     }
+
+    public class Verification
+    {
+        public Verification() { }
+        public Verification(int id, int userId)
+        {
+            Id = id;
+            UserId = userId;
+        }
+
+        public int Id { get; set; }
+        public int UserId { get; set; }
+    }
 }

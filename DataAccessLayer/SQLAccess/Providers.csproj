@@ -42,11 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdoTransaction.cs" />
+    <Compile Include="CategoryProvider.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SettingsProvider.cs" />
+    <Compile Include="ArticleProvider.cs" />
     <Compile Include="UserProvider.cs" />
     <Compile Include="RoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

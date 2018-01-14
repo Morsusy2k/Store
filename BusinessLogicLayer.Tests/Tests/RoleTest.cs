@@ -8,13 +8,14 @@ namespace Store.BusinessLogicLayer.Tests
     public static class RoleTest
     {
         private static readonly IRoleManager _roleManager = new RoleManager();
+        private static readonly ISettingsManager _logManager = new SettingsManager();
 
         public static void Menu()
         {
             
 
             int choice = 0;
-            while (choice != 5)
+            while (choice != 9)
             {
                 Console.Clear();
                 ShowAll();
@@ -23,7 +24,7 @@ namespace Store.BusinessLogicLayer.Tests
                 Console.WriteLine("[1] Insert new role");
                 Console.WriteLine("[2] Update role");
                 Console.WriteLine("[3] Remove role");
-                Console.WriteLine("[5] Exit");
+                Console.WriteLine("[9] Exit");
 
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (char.IsDigit(key.KeyChar))
@@ -57,9 +58,26 @@ namespace Store.BusinessLogicLayer.Tests
         {
             Console.Write("\nInsert role id: ");
             Int32.TryParse(Console.ReadLine(), out int id);
+            Role role = _roleManager.GetById(id);
+            if (role == null)
+            {
+                Console.WriteLine("Role not found!");
+                return;
+            }
 
-            _roleManager.Remove(_roleManager.GetById(id));
-            Console.WriteLine("Role removed!");
+            Console.WriteLine("Please confirm by typing \"yes\"");
+            string confirmation = Console.ReadLine();
+            if (confirmation != "yes")
+            {
+                Console.WriteLine("Action canceled!");
+                return;
+            }
+            else
+            {
+                _logManager.AddLog(new Log(0, $"Role ({role.Id}) {role.Name} removed", "localhost"));
+                _roleManager.Remove(role);
+                Console.WriteLine("Role removed!");
+            }
         }
 
         private static void UpdateAndShowRole()
@@ -68,13 +86,21 @@ namespace Store.BusinessLogicLayer.Tests
             Int32.TryParse(Console.ReadLine(), out int id);
 
             Role role = _roleManager.GetById(id);
+            if (role == null)
+            {
+                Console.WriteLine("Role not found!");
+                return;
+            }
+
             Console.WriteLine("Changing role: \n");
             ShowRole(role);
+            string oldRoleName = role.Name;
 
             Console.WriteLine("New role name:");
             role.Name = Console.ReadLine();
 
             ShowRole(_roleManager.Save(role));
+            _logManager.AddLog(new Log(0, $"Role ({role.Id}) name changed {oldRoleName} > {role.Name}", "localhost"));
             Console.WriteLine("Role saved!");
         }
 
@@ -84,7 +110,8 @@ namespace Store.BusinessLogicLayer.Tests
             Console.WriteLine("\n- Insert new role -");
             Console.Write("Role name: ");
             role.Name = Console.ReadLine();
-            _roleManager.Add(role);
+            Role newRole = _roleManager.Add(role);
+            _logManager.AddLog(new Log(0, $"Role ({newRole.Id}) {newRole.Name} role added", "localhost"));
             Console.WriteLine("\nRole created!");
         }
 

@@ -20,9 +20,24 @@ namespace Store.RepositoryLayer.Repositories
             return _provider.GetUserById(id);
         }
 
+        public List<Verification> GetAllVerifications()
+        {
+            return _provider.GetAllVerifications();
+        }
+
+        public Verification GetVerificationByUserId(int id)
+        {
+            return _provider.GetVerificationByUserId(id);
+        }
+
         public User InsertUser(User user, ITransaction transaction = null)
         {
             return _provider.InsertUser(user, transaction);
+        }
+
+        public Verification InsertVerification(Verification verification, ITransaction transaction = null)
+        {
+            return _provider.InsertVerification(verification, transaction);
         }
 
         public User UpdateUser(User user, ITransaction transaction = null)
@@ -33,6 +48,11 @@ namespace Store.RepositoryLayer.Repositories
         public void DeleteUser(User user, ITransaction transaction = null)
         {
             _provider.DeleteUser(user, transaction);
+        }
+
+        public void DeleteVerification(Verification verification, ITransaction transaction = null)
+        {
+            _provider.DeleteVerification(verification);
         }
 
         public ITransaction CreateNewTransaction()

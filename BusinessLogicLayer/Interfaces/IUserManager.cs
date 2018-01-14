@@ -14,5 +14,14 @@ namespace Store.BusinessLogicLayer.Interfaces
 
         User Map(DataAccessLayer.Models.User dbuser);
         DataAccessLayer.Models.User Map(User user);
+
+        Verification GetVerificationByUserId(int id);
+        IEnumerable<Verification> GetAllVerifications();
+
+        Verification AddVerification(Verification verification);
+        void RemoveVerification(Verification verification);
+
+        Verification Map(DataAccessLayer.Models.Verification dbVerification);
+        DataAccessLayer.Models.Verification Map(Verification verification);
     }
 }

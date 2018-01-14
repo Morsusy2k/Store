@@ -10,6 +10,7 @@ namespace Store.BusinessLogicLayer.Tests
     {
         private static readonly IUserManager _userManager = new UserManager();
         private static readonly IRoleManager _roleManager = new RoleManager();
+        private static readonly ISettingsManager _logManager = new SettingsManager();
 
         public static void Menu()
         {
@@ -26,6 +27,7 @@ namespace Store.BusinessLogicLayer.Tests
                 Console.WriteLine("[3] Remove user");
                 Console.WriteLine("[4] Add a role to user");
                 Console.WriteLine("[5] Remove all user roles");
+                Console.WriteLine("[6] Remove user verification");
                 Console.WriteLine("[9] Exit");
 
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -60,6 +62,10 @@ namespace Store.BusinessLogicLayer.Tests
                         RemoveAllUserRoles();
                         Wait();
                         break;
+                    case 6:
+                        RemoveVerification();
+                        Wait();
+                        break;
                 }
             }
         }
@@ -86,6 +92,7 @@ namespace Store.BusinessLogicLayer.Tests
             else
             {
                 _roleManager.RemoveUserRoles(user);
+                _logManager.AddLog(new Log(0,$"User ({user.Id}) {user.FirstName} {user.LastName} roles removed","localhost"));
                 Console.WriteLine($"All roles of user {user.FirstName} {user.LastName} removed!");
             }
         }
@@ -118,6 +125,7 @@ namespace Store.BusinessLogicLayer.Tests
             }
 
             _roleManager.AddUserRole(role, user);
+            _logManager.AddLog(new Log(0, $"Added role ({role.Id}) {role.Name} to user ({user.Id}) {user.FirstName} {user.LastName}", "localhost"));
             Console.WriteLine($"Role {role.Name} added to user {user.FirstName} {user.LastName}");
         }
 
@@ -140,11 +148,14 @@ namespace Store.BusinessLogicLayer.Tests
             user.Address = Console.ReadLine();
             Console.Write("Password: ");
             user.Password = Console.ReadLine();
-            user.Activated = true;
+            user.Activated = false;
             user.LastLogin = DateTime.Now;
             user.Version = CurrentTimeStamp;
 
-            _userManager.Add(user);
+            User newUser = _userManager.Add(user);
+
+            Verification ver = _userManager.AddVerification(new Verification(newUser.Id));
+            _logManager.AddLog(new Log(0, $"Added new user ({newUser.Id}) {newUser.FirstName} {newUser.LastName}, added verification code", "localhost"));
             Console.WriteLine("\nUser created!");
 
         }
@@ -163,6 +174,12 @@ namespace Store.BusinessLogicLayer.Tests
             Int32.TryParse(Console.ReadLine(), out int id);
 
             User user = _userManager.GetById(id);
+            if (user == null)
+            {
+                Console.WriteLine("User not found!");
+                return;
+            }
+
             Console.WriteLine("Changing user: \n");
             ShowUser(user);
 
@@ -180,8 +197,16 @@ namespace Store.BusinessLogicLayer.Tests
         {
             Console.Write("\nInsert user id: ");
             Int32.TryParse(Console.ReadLine(), out int id);
+            User user = _userManager.GetById(id);
 
-            _userManager.Remove(_userManager.GetById(id));
+            if (user == null)
+            {
+                Console.WriteLine("User not found!");
+                return;
+            }
+
+            _logManager.AddLog(new Log(0, $"User ({user.Id}) {user.FirstName} {user.LastName} removed", "localhost"));
+            _userManager.Remove(user);
             Console.WriteLine("User removed!");
         }
 
@@ -196,6 +221,31 @@ namespace Store.BusinessLogicLayer.Tests
             }
 
             Console.WriteLine();
+        }
+
+        private static void RemoveVerification()
+        {
+            Console.Write("\nInsert user id: ");
+            Int32.TryParse(Console.ReadLine(), out int id);
+            User user = _userManager.GetById(id);
+
+            if (user == null)
+            {
+                Console.WriteLine("User not found!");
+                return;
+            }
+
+            Verification ver = _userManager.GetVerificationByUserId(user.Id);
+            if (ver == null)
+            {
+                Console.WriteLine("User is already verified!");
+                return;
+            }
+
+            _userManager.RemoveVerification(ver);
+
+            _logManager.AddLog(new Log(0, $"Verification removed for user ({user.Id}) {user.FirstName} {user.LastName}", "localhost"));
+            Console.WriteLine("User verified!");
         }
 
         private static void Wait()

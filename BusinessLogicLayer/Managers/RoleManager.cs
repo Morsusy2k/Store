@@ -83,7 +83,7 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(dbUser, null))
                 return null;
 
-            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Activated, dbUser.Version, dbUser.Picture);
+            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Activated, dbUser.Picture);
             user.Id = dbUser.Id;
             user.Version = dbUser.Version;
 

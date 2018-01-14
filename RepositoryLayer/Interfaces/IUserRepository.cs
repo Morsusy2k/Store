@@ -9,9 +9,16 @@ namespace Store.RepositoryLayer.Interfaces
         User GetUserById(int id);
         List<User> GetAllUsers();
 
+        Verification GetVerificationByUserId(int id);
+        List<Verification> GetAllVerifications();
+
+
         User InsertUser(User user, ITransaction transaction = null);
         User UpdateUser(User user, ITransaction transaction = null);
         void DeleteUser(User user, ITransaction transaction = null);
+
+        Verification InsertVerification(Verification verification, ITransaction transaction = null);
+        void DeleteVerification(Verification verification, ITransaction transaction = null);
 
         ITransaction CreateNewTransaction();
     }
