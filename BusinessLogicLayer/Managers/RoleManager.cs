@@ -83,7 +83,7 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(dbUser, null))
                 return null;
 
-            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Activated, dbUser.Picture);
+            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Version, dbUser.Picture);
             user.Id = dbUser.Id;
             user.Version = dbUser.Version;
 
@@ -95,7 +95,7 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(user, null))
                 throw new ArgumentNullException("User", "Valid user is mandatory!");
 
-            return new DataAccessLayer.Models.User(user.Id, user.FirstName, user.LastName, user.EmailAddress, user.PhoneNumber, user.Address, user.Password, user.LastLogin, user.Activated, user.Version, user.Picture);
+            return new DataAccessLayer.Models.User(user.Id, user.FirstName, user.LastName, user.EmailAddress, user.PhoneNumber, user.Address, user.Password, user.LastLogin, user.Version, user.Picture);
         }
 
     }

@@ -5,7 +5,7 @@ namespace Store.DataAccessLayer.Models
     public class User
     {
         public User() { }
-        public User(int id, string firstname, string lastname, string emailaddress, string phonenumber, string address, string password, DateTime lastlogin, bool activated, byte[] version, byte?[] picture = null)
+        public User(int id, string firstname, string lastname, string emailaddress, string phonenumber, string address, string password, DateTime lastlogin, byte[] version, byte?[] picture = null)
         {
             Id = id;
             FirstName = firstname;
@@ -17,7 +17,6 @@ namespace Store.DataAccessLayer.Models
             Password = password;
             LastLogin = lastlogin;
             Version = version;
-            Activated = activated;
         }
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -29,7 +28,6 @@ namespace Store.DataAccessLayer.Models
         public string Password { get; set; }
         public DateTime LastLogin { get; set; }
         public byte[] Version { get; set; }
-        public bool Activated { get; set; }
     }
 
     public class Verification

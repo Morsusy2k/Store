@@ -39,7 +39,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
                     }
                 }
             }
-
             return result;
         }
         public User GetUserById(int id)
@@ -68,7 +67,63 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
                     }
                 }
             }
+            return result;
+        }
+        public User GetUserByCredentials(string email, string password)
+        {
+            User result = null;
 
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserGetByCredentials", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@Email", email);
+                    sqlCommand.Parameters.AddWithValue("@Password", password);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result = DBAccessExtensions.MapTableEntityTo<User>(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+        public User GetUserByEmail(string email)
+        {
+            User result = null;
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserGetByEmail", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@Email", email);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result = DBAccessExtensions.MapTableEntityTo<User>(reader);
+                            }
+                        }
+                    }
+                }
+            }
             return result;
         }
 
@@ -99,7 +154,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
-
         public Verification GetVerificationByUserId(int id)
         {
             Verification result = null;
@@ -263,7 +317,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
             sqlCommand.Parameters.AddWithValue("@Picture", user.Picture);
             sqlCommand.Parameters.AddWithValue("@Password", user.Password);
             sqlCommand.Parameters.AddWithValue("@LastLogin", user.LastLogin);
-            sqlCommand.Parameters.AddWithValue("@Activated", user.Activated);
 
             SqlParameter outputIdParam = new SqlParameter("@Id", SqlDbType.Int);
             outputIdParam.Direction = ParameterDirection.Output;
@@ -280,7 +333,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             return user;
         }
-
         public User UpdateUserSqlCommand(SqlCommand sqlCommand, User user)
         {
             sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -294,7 +346,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
             sqlCommand.Parameters.AddWithValue("@Picture", user.Picture);
             sqlCommand.Parameters.AddWithValue("@Password", user.Password);
             sqlCommand.Parameters.AddWithValue("@LastLogin", user.LastLogin);
-            sqlCommand.Parameters.AddWithValue("@Activated", user.Activated);
 
             SqlParameter outputVersionParam = new SqlParameter("@Version", SqlDbType.Timestamp);
             outputVersionParam.Direction = ParameterDirection.InputOutput;
@@ -311,7 +362,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             return user;
         }
-
         public void DeleteUserSqlCommand(SqlCommand sqlCommand, User user)
         {
             sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -344,7 +394,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             return verification;
         }
-
         public void DeleteVerificationSqlCommand(SqlCommand sqlCommand, Verification verification)
         {
             sqlCommand.CommandType = CommandType.StoredProcedure;

@@ -1,6 +1,7 @@
 ﻿using Store.BusinessLogicLayer.Interfaces;
 using Store.BusinessLogicLayer.Managers;
 using Store.BusinessLogicLayer.Models;
+using Store.Utilities.Common.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -147,15 +148,14 @@ namespace Store.BusinessLogicLayer.Tests
             Console.Write("Address: ");
             user.Address = Console.ReadLine();
             Console.Write("Password: ");
-            user.Password = Console.ReadLine();
-            user.Activated = false;
+            string password = Console.ReadLine();
+            user.Password = Helpers.GetMD5Hash(password);
             user.LastLogin = DateTime.Now;
             user.Version = CurrentTimeStamp;
 
             User newUser = _userManager.Add(user);
 
-            Verification ver = _userManager.AddVerification(new Verification(newUser.Id));
-            _logManager.AddLog(new Log(0, $"Added new user ({newUser.Id}) {newUser.FirstName} {newUser.LastName}, added verification code", "localhost"));
+            //_logManager.AddLog(new Log(0, $"Added new user ({newUser.Id}) {newUser.FirstName} {newUser.LastName}, added verification code", "localhost"));
             Console.WriteLine("\nUser created!");
 
         }
@@ -205,7 +205,7 @@ namespace Store.BusinessLogicLayer.Tests
                 return;
             }
 
-            _logManager.AddLog(new Log(0, $"User ({user.Id}) {user.FirstName} {user.LastName} removed", "localhost"));
+            //_logManager.AddLog(new Log(0, $"User ({user.Id}) {user.FirstName} {user.LastName} removed", "localhost"));
             _userManager.Remove(user);
             Console.WriteLine("User removed!");
         }

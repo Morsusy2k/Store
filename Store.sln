@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "BusinessLogi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Providers", "DataAccessLayer\SQLAccess\Providers.csproj", "{5ED69680-06C4-416F-B205-018796C0B103}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{9B44DF8D-435B-4A69-8814-A13C8B66A092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "PresentationLayer\WebApplication\WebApplication.csproj", "{1E4D1D25-1D19-41DF-9F81-E2E2FFCFD253}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,10 @@ Global
 		{5ED69680-06C4-416F-B205-018796C0B103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED69680-06C4-416F-B205-018796C0B103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED69680-06C4-416F-B205-018796C0B103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E4D1D25-1D19-41DF-9F81-E2E2FFCFD253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E4D1D25-1D19-41DF-9F81-E2E2FFCFD253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E4D1D25-1D19-41DF-9F81-E2E2FFCFD253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E4D1D25-1D19-41DF-9F81-E2E2FFCFD253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +105,7 @@ Global
 		{633413CE-DB91-4DCE-A025-3A0A469ACA0B} = {A1C9EA2F-F811-4F00-923E-F0C71113CF0A}
 		{545DDDC5-1AEA-4219-9192-F4C5DA0B403A} = {A1C9EA2F-F811-4F00-923E-F0C71113CF0A}
 		{5ED69680-06C4-416F-B205-018796C0B103} = {C40386DA-B13B-4587-B94F-FCB2EC837EEC}
+		{1E4D1D25-1D19-41DF-9F81-E2E2FFCFD253} = {9B44DF8D-435B-4A69-8814-A13C8B66A092}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C88F354-AEFB-4988-A403-C032460D33C2}

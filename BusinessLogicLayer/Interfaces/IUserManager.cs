@@ -7,6 +7,8 @@ namespace Store.BusinessLogicLayer.Interfaces
     {
         User GetById(int id);
         IEnumerable<User> GetAll();
+        User GetByCredentials(string email, string password);
+        User GetByEmail(string email);
 
         User Add(User user);
         User Save(User user);

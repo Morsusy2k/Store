@@ -34,6 +34,7 @@ D:\C#\MAPS\DataAccessLayer\SQLAccess\obj\Debug\Providers.csprojResolveAssemblyRe
 D:\C#\MAPS\DataAccessLayer\SQLAccess\obj\Debug\Providers.csproj.CoreCompileInputs.cache
 D:\C#\MAPS\DataAccessLayer\SQLAccess\obj\Debug\MAPS.DataAccessLayer.SQLAccess.Providers.dll
 D:\C#\MAPS\DataAccessLayer\SQLAccess\obj\Debug\MAPS.DataAccessLayer.SQLAccess.Providers.pdb
+D:\C#\Store\DataAccessLayer\SQLAccess\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll.config
 D:\C#\Store\DataAccessLayer\SQLAccess\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll
 D:\C#\Store\DataAccessLayer\SQLAccess\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.pdb
 D:\C#\Store\DataAccessLayer\SQLAccess\bin\Debug\Store.DataAccessLayer.Models.dll
@@ -46,4 +47,3 @@ D:\C#\Store\DataAccessLayer\SQLAccess\obj\Debug\Providers.csprojResolveAssemblyR
 D:\C#\Store\DataAccessLayer\SQLAccess\obj\Debug\Providers.csproj.CoreCompileInputs.cache
 D:\C#\Store\DataAccessLayer\SQLAccess\obj\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll
 D:\C#\Store\DataAccessLayer\SQLAccess\obj\Debug\Store.DataAccessLayer.SQLAccess.Providers.pdb
-D:\C#\Store\DataAccessLayer\SQLAccess\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll.config

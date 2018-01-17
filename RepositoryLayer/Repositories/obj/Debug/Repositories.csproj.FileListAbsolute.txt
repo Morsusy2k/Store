@@ -26,10 +26,10 @@ D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.RepositoryLayer.Interfa
 D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.Utilities.Common.dll
 D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.DataAccessLayer.Models.pdb
 D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.pdb
+D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll.config
 D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.Utilities.Common.pdb
 D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.RepositoryLayer.Interfaces.pdb
 D:\C#\Store\RepositoryLayer\Repositories\obj\Debug\Repositories.csprojResolveAssemblyReference.cache
 D:\C#\Store\RepositoryLayer\Repositories\obj\Debug\Repositories.csproj.CoreCompileInputs.cache
 D:\C#\Store\RepositoryLayer\Repositories\obj\Debug\Store.RepositoryLayer.Repositories.dll
 D:\C#\Store\RepositoryLayer\Repositories\obj\Debug\Store.RepositoryLayer.Repositories.pdb
-D:\C#\Store\RepositoryLayer\Repositories\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll.config

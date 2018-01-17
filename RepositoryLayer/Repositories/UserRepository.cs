@@ -20,6 +20,16 @@ namespace Store.RepositoryLayer.Repositories
             return _provider.GetUserById(id);
         }
 
+        public User GetUserByCredentials(string email, string password)
+        {
+            return _provider.GetUserByCredentials(email, password);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _provider.GetUserByEmail(email);
+        }
+
         public List<Verification> GetAllVerifications()
         {
             return _provider.GetAllVerifications();

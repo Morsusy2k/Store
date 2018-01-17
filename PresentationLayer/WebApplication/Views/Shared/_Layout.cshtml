@@ -1,44 +1,61 @@
-﻿<!DOCTYPE html>
+﻿@using Store.BusinessLogicLayer.Interfaces;
+@using Store.BusinessLogicLayer.Managers;
+@{
+    ISettingsManager _settingsManager = new SettingsManager();
+    string header = _settingsManager.GetSettingsByKey("Title").Value;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title>@header | @ViewBag.Page</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/Site.css")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+    <div class="main-top-bar-hover">
+        <div class="main-top-bar-container noselect">
+            <div class="main-top-bar">
+                <a href="#"><i class="fab fa-facebook" style="color:#8b9dc3;  border-color:#8b9dc3;"></i></a>
+                <a href="#"><i class="fab fa-youtube" style="color:#dd4b39;  border-color:#dd4b39;"></i></a>
+                <a href="#"><i class="fab fa-twitter" style="color:#0099e5;  border-color:#0099e5;"></i></a>
+                <a href="#"><i class="fab fa-pinterest" style="color:#dd4b39;  border-color:#dd4b39;"></i></a>
+                <a href="#"><i class="fa fa-envelope" aria-hidden="true" style="color:white;  border-color:white;"></i></a>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+
+    <div class="main-header">
+        <div class="main-logo">
+            @Html.ActionLink(@header, "Index", "Home")
+        </div>
+        <div class="main-nav-bg"></div>
+        <div class="main-navbar-container">
+            <ul id="main-nav-lava" class="main-navbar">
+                <li class="@{if (ViewBag.Page == "Home") {<text>active</text>} }">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="@{if (ViewBag.Page == "About") {<text>active</text>} }">@Html.ActionLink("About", "About", "Home")</li>
+                <li class="@{if (ViewBag.Page == "Contact") {<text>active</text>} }">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+            
+        </div>
+    </div>
+    <div class="main-container">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery-3.2.1.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/main-script.js")
+    @Scripts.Render("~/Scripts/jquery-lava.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

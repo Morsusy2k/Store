@@ -44,11 +44,11 @@
     <Compile Include="Constants.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="Extensions\DBAccessExtensions.cs" />
+    <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="ITransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Handlers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

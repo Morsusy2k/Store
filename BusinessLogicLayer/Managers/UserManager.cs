@@ -12,6 +12,7 @@ namespace Store.BusinessLogicLayer.Managers
     public class UserManager : IUserManager
     {
         private readonly IUserRepository _repository = new UserRepository();
+        private readonly ISettingsManager _settingsManager = new SettingsManager();
         private ITransaction _transaction;
 
         public IEnumerable<User> GetAll()
@@ -27,6 +28,16 @@ namespace Store.BusinessLogicLayer.Managers
         public User GetById(int id)
         {
             return Map(_repository.GetUserById(id));
+        }
+
+        public User GetByCredentials(string email, string password)
+        {
+            return Map(_repository.GetUserByCredentials(email, password));
+        }
+
+        public User GetByEmail(string email)
+        {
+            return Map(_repository.GetUserByEmail(email));
         }
 
         public Verification GetVerificationByUserId(int id)
@@ -64,9 +75,8 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(dbUser, null))
                 return null;
 
-            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Activated, dbUser.Picture);
+            User user = new User(dbUser.FirstName, dbUser.LastName, dbUser.EmailAddress, dbUser.PhoneNumber, dbUser.Address, dbUser.Password, dbUser.LastLogin, dbUser.Version ,dbUser.Picture);
             user.Id = dbUser.Id;
-            user.Version = dbUser.Version;
 
             return user;
         }
@@ -76,7 +86,7 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(user, null))
                 throw new ArgumentNullException("User", "Valid user is mandatory!");
 
-            return new DataAccessLayer.Models.User(user.Id, user.FirstName, user.LastName, user.EmailAddress, user.PhoneNumber, user.Address, user.Password, user.LastLogin, user.Activated, user.Version, user.Picture);
+            return new DataAccessLayer.Models.User(user.Id, user.FirstName, user.LastName, user.EmailAddress, user.PhoneNumber, user.Address, user.Password, user.LastLogin, user.Version, user.Picture);
         }
 
         public Verification Map(DataAccessLayer.Models.Verification dbVerification)

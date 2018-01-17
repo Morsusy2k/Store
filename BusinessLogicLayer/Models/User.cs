@@ -12,10 +12,9 @@ namespace Store.BusinessLogicLayer.Models
         private string address { get; set; }
         private string password { get; set; }
         private DateTime lastlogin { get; set; }
-        private bool activated { get; set; }
 
         public User() { }
-        public User(string firstname, string lastname, string emailaddress, string phonenumber, string address, string password, DateTime lastlogin, bool activated, byte?[] picture = null)
+        public User(string firstname, string lastname, string emailaddress, string phonenumber, string address, string password, DateTime lastlogin, byte[] version, byte?[] picture = null)
         {
             FirstName = firstname;
             LastName = lastname;
@@ -25,7 +24,7 @@ namespace Store.BusinessLogicLayer.Models
             Picture = picture;
             Password = password;
             LastLogin = lastlogin;
-            Activated = activated;
+            Version = version;
         }
         public int Id { get; set; }
         public byte[] Version { get; set; }
@@ -201,27 +200,6 @@ namespace Store.BusinessLogicLayer.Models
                 catch
                 {
                     lastlogin = oldValue;
-                    throw;
-                }
-            }
-        }
-        public bool Activated
-        {
-            get
-            {
-                return activated;
-            }
-
-            set
-            {
-                bool oldValue = activated;
-                try
-                {
-                    activated = value;
-                }
-                catch
-                {
-                    activated = oldValue;
                     throw;
                 }
             }

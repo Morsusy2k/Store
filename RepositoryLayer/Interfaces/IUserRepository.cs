@@ -8,6 +8,8 @@ namespace Store.RepositoryLayer.Interfaces
     {
         User GetUserById(int id);
         List<User> GetAllUsers();
+        User GetUserByCredentials(string email, string password);
+        User GetUserByEmail(string email);
 
         Verification GetVerificationByUserId(int id);
         List<Verification> GetAllVerifications();

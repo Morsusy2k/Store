@@ -38,8 +38,8 @@ D:\C#\Store\BusinessLogicLayer\Managers\bin\Debug\Store.Utilities.Common.pdb
 D:\C#\Store\BusinessLogicLayer\Managers\bin\Debug\Store.BusinessLogicLayer.Interfaces.pdb
 D:\C#\Store\BusinessLogicLayer\Managers\bin\Debug\Store.BusinessLogicLayer.Models.pdb
 D:\C#\Store\BusinessLogicLayer\Managers\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.pdb
+D:\C#\Store\BusinessLogicLayer\Managers\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll.config
 D:\C#\Store\BusinessLogicLayer\Managers\obj\Debug\Managers.csprojResolveAssemblyReference.cache
 D:\C#\Store\BusinessLogicLayer\Managers\obj\Debug\Managers.csproj.CoreCompileInputs.cache
 D:\C#\Store\BusinessLogicLayer\Managers\obj\Debug\Store.BusinessLogicLayer.Managers.dll
 D:\C#\Store\BusinessLogicLayer\Managers\obj\Debug\Store.BusinessLogicLayer.Managers.pdb
-D:\C#\Store\BusinessLogicLayer\Managers\bin\Debug\Store.DataAccessLayer.SQLAccess.Providers.dll.config
