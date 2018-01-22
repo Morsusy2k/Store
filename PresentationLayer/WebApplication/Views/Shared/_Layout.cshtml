@@ -3,6 +3,9 @@
 @{
     ISettingsManager _settingsManager = new SettingsManager();
     string header = _settingsManager.GetSettingsByKey("Title").Value;
+
+    ICategoryManager _categoryManager = new CategoryManager();
+    IEnumerable<CategoryModel> categories = _categoryManager.GetAll().Select(x => (CategoryModel)x);
 }
 
 <!DOCTYPE html>
@@ -36,25 +39,54 @@
         <div class="main-nav-bg"></div>
         <div class="main-navbar-container">
             <ul id="main-nav-lava" class="main-navbar">
-                <li class="@{if (ViewBag.Page == "Home") {<text>active</text>} }">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li class="@{if (ViewBag.Page == "About") {<text>active</text>} }">@Html.ActionLink("About", "About", "Home")</li>
-                <li class="@{if (ViewBag.Page == "Contact") {<text>active</text>} }">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li class="@{if (ViewBag.Page == "Home") {<text>active</text>} }">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "main-navbar-links" })</li>
+                <li class="main-category @{if (ViewBag.Page == "Category") {<text>active</text>} }">
+                    <a href="#" class="main-navbar-links">Category</a>
+                    <ul class="main-category-dropdown">
+                        @foreach (CategoryModel cat in categories)
+                        {
+                            <li class="main-sub-cat">
+                                @cat.Name
+                                <ul class="main-category-menu-dropdown-sub">
+                                    @foreach (SubCategoryModel sub in cat.SubCategories)
+                                    {
+                                        <a href="@Url.Action("Category","Home", new {sub.Id})">
+                                            @if (sub.Picture != null)
+                                            {
+                                                var base64 = Convert.ToBase64String(sub.Picture);
+                                                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                                <li style="background-image:url(@imgSrc);">@sub.Name</li>
+                                            }
+                                            else
+                                            {
+                                                <li>@sub.Name</li>
+                                            }
+                                        </a>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <li class="@{if (ViewBag.Page == "About") {<text>active</text>} }">@Html.ActionLink("About", "About", "Home", null, new { @class = "main-navbar-links" })</li>
+                <li class="@{if (ViewBag.Page == "Contact") {<text>active</text>} }">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "main-navbar-links" })</li>
+                <li class="@{if (ViewBag.Page == "Acp") {<text>active</text>} }">@Html.ActionLink("Acp", "Index", "Acp", null, new { @class = "main-navbar-links" })</li>
                 @Html.Partial("_LoginPartial")
             </ul>
-            
+
         </div>
     </div>
     <div class="main-container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year</p>
-        </footer>
+    </div>
+    <div class="main-footer">
+        Dragan Ilić &copy; @DateTime.Now.Year
     </div>
 
     @Scripts.Render("~/Scripts/jquery-3.2.1.js")
     @Scripts.Render("~/Scripts/bootstrap.js")
     @Scripts.Render("~/Scripts/main-script.js")
+    @Scripts.Render("~/Scripts/acp-script.js")
     @Scripts.Render("~/Scripts/jquery-lava.js")
     @RenderSection("scripts", required: false)
 </body>

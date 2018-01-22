@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Store.PresentationLayer.WebApplication.Models.ArticleModel>
+@using Store.BusinessLogicLayer.Interfaces
+@using Store.BusinessLogicLayer.Managers
+@using Store.Utilities.Common.Helpers
+
+
+@{
+    ICategoryManager _categoryManager = new CategoryManager();
+
+    int subId = Model.First().SubCategoryId;
+    SubCategoryModel sub = _categoryManager.GetSubCategoryById(subId);
+
+    int rnd = new Random().Next(1, 7);
+    string path = "../../Content/Image/" + rnd + ".jpg";
+}
+<div class="main-cover" style="background-image: url(@path);">
+    <div class="main-cover-text noselect">If you haven't found it yet, keep looking.<br> Search our database..</div>
+    <div class="main-cover-search">
+        <form method="get" action="@Url.Action("Index", "Home")">
+            <input type="text" name="search" id="search" placeholder="Search..." />
+            <button type="submit" class=""><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<div class="main-newest-articles noselect">
+    <div class="main-cat-title">@sub.CategoryName</div>
+    @foreach (ArticleModel article in Model)
+    {
+        <div class="main-display-article">
+            @{
+                string imgSrc = "../../Content/Image/NoImageAvailable.png";
+                if (Helpers.IsAny(article.Images))
+                {
+                    var base64 = Convert.ToBase64String(article.Images.First().Picture);
+                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+            }
+            <img src="@imgSrc" class="main-display-article-image" />
+            <div class="main-display-article-title">@article.Name</div>
+            <div class="main-display-article-price">@article.Price</div>
+            <a href="#" class="main-display-article-details">Details</a>
+        </div>
+    }
+</div>

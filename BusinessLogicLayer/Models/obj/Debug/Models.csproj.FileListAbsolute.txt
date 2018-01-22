@@ -15,3 +15,4 @@ D:\C#\Store\BusinessLogicLayer\Models\bin\Debug\Store.BusinessLogicLayer.Models.
 D:\C#\Store\BusinessLogicLayer\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 D:\C#\Store\BusinessLogicLayer\Models\obj\Debug\Store.BusinessLogicLayer.Models.dll
 D:\C#\Store\BusinessLogicLayer\Models\obj\Debug\Store.BusinessLogicLayer.Models.pdb
+D:\C#\Store\BusinessLogicLayer\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache

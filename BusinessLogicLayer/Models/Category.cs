@@ -6,13 +6,13 @@ namespace Store.BusinessLogicLayer.Models
     public class Category
     {
         private string name { get; set; }
-        private string description { get; set; }
 
         public Category() { }
-        public Category(string name, string description)
+        public Category(string name, byte[] version)
         {
             Name = name;
-            Description = description;
+
+            Version = version;
         }
         public int Id { get; set; }
         public byte[] Version { get; set; }
@@ -37,31 +37,6 @@ namespace Store.BusinessLogicLayer.Models
                 catch
                 {
                     name = oldValue;
-                    throw;
-                }
-            }
-        }
-        public string Description
-        {
-            get
-            {
-                Debug.Assert(description != null);
-                return description;
-            }
-
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("Description", "Valid description is mandatory!");
-
-                string oldValue = description;
-                try
-                {
-                    description = value;
-                }
-                catch
-                {
-                    description = oldValue;
                     throw;
                 }
             }
@@ -71,17 +46,18 @@ namespace Store.BusinessLogicLayer.Models
     public class SubCategory
     {
         private string name { get; set; }
-        private string description { get; set; }
 
         public SubCategory() { }
-        public SubCategory(int categoryId, string name, string description)
+        public SubCategory(int categoryId, string name, byte[] version, byte[] picture = null)
         {
             CategoryId = categoryId;
             Name = name;
-            Description = description;
+            Picture = picture;
+            Version = version;
         }
         public int Id { get; set; }
         public int CategoryId { get; set; }
+        public byte[] Picture { get; set; }
         public byte[] Version { get; set; }
         public string Name
         {
@@ -104,31 +80,6 @@ namespace Store.BusinessLogicLayer.Models
                 catch
                 {
                     name = oldValue;
-                    throw;
-                }
-            }
-        }
-        public string Description
-        {
-            get
-            {
-                Debug.Assert(description != null);
-                return description;
-            }
-
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("Description", "Valid description is mandatory!");
-
-                string oldValue = description;
-                try
-                {
-                    description = value;
-                }
-                catch
-                {
-                    description = oldValue;
                     throw;
                 }
             }

@@ -23,20 +23,17 @@ namespace Store.PresentationLayer.WebApplication.Security
             return false;
         }
 
-        public static bool IsInRole(string[] roles)
+        public static bool IsInRole(string roleName)
         {
             UserModel user = CurrentUser();
 
             if (user != null)
             {
-                foreach (RoleModel role in _roleManager.GetAllByUserId(user.Id))
+                foreach (var role in _roleManager.GetAllByUserId(user.Id))
                 {
-                    foreach (string paramRole in roles)
+                    if (role.Name == roleName)
                     {
-                        if (role.Name == paramRole)
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }

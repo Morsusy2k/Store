@@ -1,0 +1,9 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.ArticleModel
+
+<div class="main-acp-button-cat main-height52">
+    @Html.EditorFor(model => Model.Name, new { htmlAttributes = new { @class = "autocomplete-off" } })
+
+    <div class="main-article-load-images" id="@Model.Id"><i class="far fa-image main-cat-icon"></i></div>
+    <a href="@Url.Action("Index","Acp", new { render="editart", articleId = Model.Id })"><i class="far fa-edit main-cat-icon"></i></a>
+    <a href="@Url.Action("RemoveArticle","Acp", new { id = Model.Id })" class="delete-button"><i class="far fa-trash-alt main-cat-icon"></i></a>
+</div>

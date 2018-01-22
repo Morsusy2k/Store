@@ -70,6 +70,34 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
+        public List<Article> GetAllArticlesBySubCategoryId(int id)
+        {
+            List<Article> result = new List<Article>();
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("ArticleGetAllBySubCategoryId", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@SubCategoryId", id);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(DBAccessExtensions.MapTableEntityTo<Article>(reader));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
 
         public List<ArticleImage> GetAllImagesByArticleId(int id)
         {
@@ -128,6 +156,7 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
+
         #endregion
 
         #region [WriteMethods]

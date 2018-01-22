@@ -1,0 +1,20 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.SubCategoryModel
+
+@using (Html.BeginForm("SaveSubCategory", "Acp", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.Id)
+    @Html.HiddenFor(model => Model.Version)
+    @Html.HiddenFor(model => Model.CategoryId)
+
+    <div class="main-acp-button-cat main-height52">
+        @Html.EditorFor(model => Model.Name, new { htmlAttributes = new { @class = "autocomplete-off" } })
+        @{ 
+            string idname = "file" + Model.Id;
+        }
+        <label><i class="far fa-image main-cat-icon"></i> <input type="file" id="file" name="file" /></label>
+       
+        <button type="submit"><i class="far fa-save main-cat-icon"></i></button>
+        <a href="@Url.Action("DeleteSubCategory","Acp", new { id = Model.Id })" class="delete-button"><i class="far fa-trash-alt main-cat-icon"></i></a>
+    </div>
+}

@@ -19,7 +19,7 @@ namespace Store.PresentationLayer.WebApplication.Security
             bool authorize = false;
             foreach (var role in allowedroles)
             {
-                if (Membership.IsInRole(new[] { role }))
+                if (Membership.IsInRole(role))
                 {
                     authorize = true;
                 }

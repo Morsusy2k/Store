@@ -15,6 +15,11 @@ namespace Store.RepositoryLayer.Repositories
             return _provider.GetAllArticles();
         }
 
+        public List<Article> GetAllArticlesBySubCategoryId(int id)
+        {
+            return _provider.GetAllArticlesBySubCategoryId(id);
+        }
+
         public Article GetArticleById(int id)
         {
             return _provider.GetArticleById(id);

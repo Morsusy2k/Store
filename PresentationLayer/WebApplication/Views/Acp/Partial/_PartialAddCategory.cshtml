@@ -1,0 +1,13 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.CategoryModel
+
+@using (Html.BeginForm("AddCategory", "Acp", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.Id)
+    @Html.HiddenFor(model => Model.Version)
+    <div class="main-acp-button-cat">
+
+        @Html.EditorFor(model => Model.Name, new { htmlAttributes = new { @class = "autocomplete-off text-input", placeholder = "Category name" } })
+        <button type="submit"><i class="far fa-save main-cat-icon"></i></button>
+    </div>
+}

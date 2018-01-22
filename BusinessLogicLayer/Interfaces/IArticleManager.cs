@@ -7,6 +7,7 @@ namespace Store.BusinessLogicLayer.Interfaces
     {
         Article GetById(int id);
         IEnumerable<Article> GetAll();
+        IEnumerable<Article> GetAllBySubCategoryId(int id);
 
         Article Add(Article article);
         Article Save(Article article);

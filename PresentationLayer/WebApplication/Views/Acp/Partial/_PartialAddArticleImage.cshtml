@@ -1,0 +1,14 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.ArticleImageModel
+
+@using (Html.BeginForm("AddArticleImage", "Acp", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.ArticleId)
+
+<div class="main-acp-image-add">
+    <label> Add new image
+        <input type="file" name="file" id="file" />
+    </label>
+    <button type="submit">Add</button>
+</div>
+}

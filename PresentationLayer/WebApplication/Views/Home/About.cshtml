@@ -1,7 +1,20 @@
 ﻿@{
-    ViewBag.Title = "About";
+    int rnd = new Random().Next(1, 7);
+    string path = "../../Content/Image/" + rnd + ".jpg";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="main-cover" style="background-image: url(@path);">
+    <div class="main-cover-text noselect">If you haven't found it yet, keep looking.<br> Search our database..</div>
+    <div class="main-cover-search">
+        <form method="get" action="@Url.Action("Index", "Home")">
+            <input type="text" name="search" id="search" placeholder="Search..." />
+            <button type="submit" class=""><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</div>
+<div class="main-newest-articles noselect">
+    <h2>@ViewBag.Page</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Use this area to provide additional information.</p>
+</div>

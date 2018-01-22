@@ -1,0 +1,11 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.ArticleImageModel
+
+
+    @{ 
+        var base64 = Convert.ToBase64String(Model.Picture);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64); 
+        }
+    <div class="main-acp-image-container">
+        <img class="main-acp-image" src="@imgSrc"/>
+        <a href="@Url.Action("RemoveImage","Acp", new { Model.Id })" class="delete-button">Remove</a>
+    </div>

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Store.PresentationLayer.WebApplication.Models.ArticleModel>
+
+<ul class="main-acp-nav-container">
+    @foreach (ArticleModel article in Model)
+    {
+        <li>
+            @Html.Partial("Partial/_PartialArticle", article)
+        </li>
+    }
+</ul>

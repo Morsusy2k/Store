@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Store.Utilities.Common.Helpers
@@ -19,6 +21,11 @@ namespace Store.Utilities.Common.Helpers
             }
 
             return sBuilder.ToString();
+        }
+
+        public static bool IsAny<T>(this IEnumerable<T> data)
+        {
+            return data != null && data.Any();
         }
 
     }

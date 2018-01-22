@@ -44,9 +44,10 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(dbCategory, null))
                 return null;
 
-            Category category = new Category(dbCategory.Name, dbCategory.Description);
-            category.Id = dbCategory.Id;
-            category.Version = dbCategory.Version;
+            Category category = new Category(dbCategory.Name, dbCategory.Version)
+            {
+                Id = dbCategory.Id
+            };
 
             return category;
         }
@@ -56,7 +57,7 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(category, null))
                 throw new ArgumentNullException("Category", "Valid category is mandatory!");
 
-            return new DataAccessLayer.Models.Category(category.Id, category.Name, category.Description, category.Version);
+            return new DataAccessLayer.Models.Category(category.Id, category.Name, category.Version);
         }
 
         public IEnumerable<SubCategory> GetAllSubCategories()
@@ -94,9 +95,10 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(dbSubCategory, null))
                 return null;
 
-            SubCategory subCategory = new SubCategory(dbSubCategory.CategoryId, dbSubCategory.Name, dbSubCategory.Description);
-            subCategory.Id = dbSubCategory.Id;
-            subCategory.Version = dbSubCategory.Version;
+            SubCategory subCategory = new SubCategory(dbSubCategory.CategoryId, dbSubCategory.Name, dbSubCategory.Version ,dbSubCategory.Picture)
+            {
+                Id = dbSubCategory.Id
+            };
 
             return subCategory;
         }
@@ -106,7 +108,7 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(subCategory, null))
                 throw new ArgumentNullException("SubCategory", "Valid subCategory is mandatory!");
 
-            return new DataAccessLayer.Models.SubCategory(subCategory.Id,subCategory.CategoryId, subCategory.Name, subCategory.Description, subCategory.Version);
+            return new DataAccessLayer.Models.SubCategory(subCategory.Id,subCategory.CategoryId, subCategory.Name, subCategory.Version, subCategory.Picture);
         }
     }
 }

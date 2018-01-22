@@ -1,0 +1,13 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.CategoryModel
+
+<ul class="main-acp-nav-container">
+    @foreach (SubCategoryModel sub in Model.SubCategories)
+    {
+        <li>
+            @Html.Partial("Partial/_PartialSubCategory", sub)
+        </li>
+    }
+    <li>
+        @Html.Partial("Partial/_PartialAddSubCategory", new SubCategoryModel() { CategoryId = Model.Id })
+    </li>
+</ul>

@@ -10,7 +10,7 @@ namespace Store.BusinessLogicLayer.Models
         private string price { get; set; }
 
         public Article() { }
-        public Article(int userId, int subCategoryId, string name, string description, string price, int storage)
+        public Article(int userId, int subCategoryId, string name, string description, string price, int storage, byte[] version)
         {
             UserId = userId;
             SubCategoryId = subCategoryId;
@@ -18,6 +18,7 @@ namespace Store.BusinessLogicLayer.Models
             Description = description;
             Price = price;
             Storage = storage;
+            Version = version;
         }
         public int Id { get; set; }
         public int UserId { get; set; }
@@ -104,11 +105,12 @@ namespace Store.BusinessLogicLayer.Models
     public class ArticleImage
     {
         public ArticleImage() { }
-        public ArticleImage(int userId, int articleId, byte[] picture)
+        public ArticleImage(int userId, int articleId, byte[] picture, byte[] version)
         {
             UserId = userId;
             ArticleId = articleId;
             Picture = picture;
+            Version = version;
         }
         public int Id { get; set; }
         public int UserId { get; set; }

@@ -5,7 +5,7 @@
         public static class Roles
         {
             public const string Admin = "Administrator";
-            public const string Professor = "Professor";
+            public const string User = "User";
         }
     }
 }

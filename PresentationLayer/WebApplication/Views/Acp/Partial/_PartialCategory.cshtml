@@ -1,0 +1,15 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.CategoryModel
+
+@using (Html.BeginForm("SaveCategory", "Acp", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.Id)
+    @Html.HiddenFor(model => Model.Version)
+
+<div class="main-acp-button-cat">
+    @Html.EditorFor(model => Model.Name, new { htmlAttributes = new { @class = "autocomplete-off" } })
+    <button type="submit"><i class="far fa-save main-cat-icon"></i></button>
+    <a href="@Url.Action("DeleteCategory","Acp", new { id = Model.Id })" class="delete-button"><i class="far fa-trash-alt main-cat-icon"></i></a>
+    <button type="button" class="get-subcategories" id='@Model.Id'><i class="fas fa-angle-double-right main-cat-icon"></i></button>
+</div>
+}

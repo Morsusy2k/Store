@@ -153,11 +153,15 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AcpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\ViewModels\AccountViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -183,6 +187,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\acp-script.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -235,6 +240,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Acp\Index.cshtml" />
+    <Content Include="Views\Acp\Partial\_LoadManageCategories.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialCategory.cshtml" />
+    <Content Include="Views\Acp\Partial\_LoadManageSubCategories.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialSubCategory.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddCategory.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddSubCategory.cshtml" />
+    <Content Include="Views\Acp\Partial\_LoadManageArticles.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddArticle.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialArticle.cshtml" />
+    <Content Include="Views\Acp\Partial\_LoadEditArticle.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddArticleImage.cshtml" />
+    <Content Include="Views\Acp\Partial\_LoadArticleImages.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialArticleImage.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,26 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.ArticleModel
+@using Store.BusinessLogicLayer.Interfaces
+@using Store.BusinessLogicLayer.Managers
+
+@{
+    ICategoryManager _categoryManager = new CategoryManager();
+    IEnumerable<SubCategoryModel> subCategories = _categoryManager.GetAllSubCategories().Select(x => (SubCategoryModel)x).OrderBy(x => x.CategoryName);
+    var subCategoryList = new SelectList(subCategories, "Id", "CategoryName");
+}
+
+@using (Html.BeginForm("AddArticle", "Acp", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="main-acp-button-cat">
+    @Html.DropDownListFor(model => Model.SubCategoryId, subCategoryList, new { @class = "main-acp-article-category" })
+
+    @Html.EditorFor(model => Model.Name, new { htmlAttributes = new { @class = "autocomplete-off text-input main-acp-article-name", placeholder = "Article name" } })
+    @Html.EditorFor(model => Model.Price, new { htmlAttributes = new { @class = "autocomplete-off text-input main-acp-article-price", placeholder = "Price" } })
+
+    @Html.TextAreaFor(model => Model.Description, new {  @class = "autocomplete-off main-acp-article-desc", placeholder = "Description", @rows = "5" })
+
+    @Html.EditorFor(model => Model.Storage, new { htmlAttributes = new { @class = "autocomplete-off text-input main-acp-article-storage" } })
+    <button type="submit" class="main-float-right"><i class="far fa-save main-cat-icon"></i></button>
+</div>
+}

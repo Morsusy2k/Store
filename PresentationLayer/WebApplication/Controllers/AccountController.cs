@@ -11,7 +11,7 @@ using System;
 
 namespace Store.PresentationLayer.WebApplication.Controllers
 {
-    [Authorize]
+    [CustomAuthorize]
     public class AccountController : Controller
     {
         private readonly IUserManager _userManager = new UserManager();
@@ -37,6 +37,9 @@ namespace Store.PresentationLayer.WebApplication.Controllers
             {
                 if (Membership.ValidateUser(model.EmailAddress, model.Password))
                 {
+                    UserModel user = _userManager.GetByEmail(model.EmailAddress);
+                    user.LastLogin = DateTime.Now;
+                    _userManager.Save(user);
                     FormsAuthentication.SetAuthCookie(model.EmailAddress, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
@@ -49,6 +52,7 @@ namespace Store.PresentationLayer.WebApplication.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

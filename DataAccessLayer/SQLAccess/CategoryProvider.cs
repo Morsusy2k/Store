@@ -305,7 +305,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
             sqlCommand.CommandType = CommandType.StoredProcedure;
 
             sqlCommand.Parameters.AddWithValue("@Name", category.Name);
-            sqlCommand.Parameters.AddWithValue("@Description", category.Description);
 
             SqlParameter outputIdParam = new SqlParameter("@Id", SqlDbType.Int);
             outputIdParam.Direction = ParameterDirection.Output;
@@ -329,7 +328,6 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             sqlCommand.Parameters.AddWithValue("@Id", category.Id);
             sqlCommand.Parameters.AddWithValue("@Name", category.Name);
-            sqlCommand.Parameters.AddWithValue("@Description", category.Description);
 
             SqlParameter outputVersionParam = new SqlParameter("@Version", SqlDbType.Timestamp);
             outputVersionParam.Direction = ParameterDirection.InputOutput;
@@ -368,7 +366,7 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
 
             sqlCommand.Parameters.AddWithValue("@CategoryId", subCategory.CategoryId);
             sqlCommand.Parameters.AddWithValue("@Name", subCategory.Name);
-            sqlCommand.Parameters.AddWithValue("@Description", subCategory.Description);
+            sqlCommand.Parameters.AddWithValue("@Picture", subCategory.Picture);
 
             SqlParameter outputIdParam = new SqlParameter("@Id", SqlDbType.Int);
             outputIdParam.Direction = ParameterDirection.Output;
@@ -393,7 +391,7 @@ namespace Store.DataAccessLayer.SQLAccess.Providers
             sqlCommand.Parameters.AddWithValue("@Id", subCategory.Id);
             sqlCommand.Parameters.AddWithValue("@CategoryId", subCategory.CategoryId);
             sqlCommand.Parameters.AddWithValue("@Name", subCategory.Name);
-            sqlCommand.Parameters.AddWithValue("@Description", subCategory.Description);
+            sqlCommand.Parameters.AddWithValue("@Picture", subCategory.Picture);
 
             SqlParameter outputVersionParam = new SqlParameter("@Version", SqlDbType.Timestamp);
             outputVersionParam.Direction = ParameterDirection.InputOutput;

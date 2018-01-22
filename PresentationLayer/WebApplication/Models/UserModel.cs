@@ -1,12 +1,7 @@
 ﻿using Store.BusinessLogicLayer.Models;
-using Store.BusinessLogicLayer.Interfaces;
-using Store.BusinessLogicLayer.Managers;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Store.PresentationLayer.WebApplication.Models
 {

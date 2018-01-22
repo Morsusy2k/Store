@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Store.PresentationLayer.WebApplication.Models.CategoryModel>
+<ul class="main-acp-nav-container">
+    @foreach (CategoryModel cat in Model)
+    {
+    <li>
+        @Html.Partial("Partial/_PartialCategory", cat) 
+    </li>
+    }
+    <li>
+        @Html.Partial("Partial/_PartialAddCategory", new CategoryModel())
+    </li>
+</ul>

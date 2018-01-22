@@ -8,6 +8,7 @@ namespace Store.RepositoryLayer.Interfaces
     {
         Article GetArticleById(int id);
         List<Article> GetAllArticles();
+        List<Article> GetAllArticlesBySubCategoryId(int id);
 
         Article InsertArticle(Article article, ITransaction transaction = null);
         Article UpdateArticle(Article article, ITransaction transaction = null);

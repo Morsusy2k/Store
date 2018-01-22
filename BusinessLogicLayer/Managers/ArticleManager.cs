@@ -19,6 +19,11 @@ namespace Store.BusinessLogicLayer.Managers
             return _repository.GetAllArticles().Select(x => Map(x));
         }
 
+        public IEnumerable<Article> GetAllBySubCategoryId(int id)
+        {
+            return _repository.GetAllArticlesBySubCategoryId(id).Select(x => Map(x));
+        }
+
         public Article GetById(int id)
         {
             return Map(_repository.GetArticleById(id));
@@ -44,9 +49,8 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(dbArticle, null))
                 return null;
 
-            Article article = new Article(dbArticle.UserId, dbArticle.SubCategoryId, dbArticle.Name, dbArticle.Description, dbArticle.Price, dbArticle.Storage);
+            Article article = new Article(dbArticle.UserId, dbArticle.SubCategoryId, dbArticle.Name, dbArticle.Description, dbArticle.Price, dbArticle.Storage, dbArticle.Version);
             article.Id = dbArticle.Id;
-            article.Version = dbArticle.Version;
 
             return article;
         }
@@ -84,9 +88,8 @@ namespace Store.BusinessLogicLayer.Managers
             if (Equals(dbArticleImage, null))
                 return null;
 
-            ArticleImage articleImage = new ArticleImage(dbArticleImage.UserId, dbArticleImage.ArticleId, dbArticleImage.Picture);
+            ArticleImage articleImage = new ArticleImage(dbArticleImage.UserId, dbArticleImage.ArticleId, dbArticleImage.Picture, dbArticleImage.Version);
             articleImage.Id = dbArticleImage.Id;
-            articleImage.Version = dbArticleImage.Version;
 
             return articleImage;
         }

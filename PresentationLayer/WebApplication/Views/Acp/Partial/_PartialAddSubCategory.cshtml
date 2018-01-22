@@ -1,0 +1,13 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.SubCategoryModel
+
+@using (Html.BeginForm("AddSubCategory", "Acp", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.CategoryId)
+<div class="main-acp-button-cat">
+    @Html.EditorFor(model => Model.Name, new { htmlAttributes = new { @class = "autocomplete-off text-input", placeholder = "Subcategory name" } })
+    <label for="file"><i class="far fa-image main-cat-icon"></i></label>
+    <input type="file" name="file" id="file" />
+    <button type="submit"><i class="far fa-save main-cat-icon"></i></button>
+</div>
+}

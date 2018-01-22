@@ -1,0 +1,7 @@
+﻿@model Store.PresentationLayer.WebApplication.Models.ArticleModel
+
+@foreach (ArticleImageModel model in Model.Images)
+{
+    @Html.Partial("Partial/_PartialArticleImage", model)
+}
+@Html.Partial("Partial/_PartialAddArticleImage", new ArticleImageModel() { ArticleId = Model.Id })
